@@ -1,0 +1,2653 @@
+{
+  "version": 4,
+  "terraform_version": "1.9.2",
+  "serial": 207,
+  "lineage": "63d69712-a8b7-ccaa-3baa-7b7cc3325468",
+  "outputs": {},
+  "resources": [
+    {
+      "module": "module.alb.module.internal_alb",
+      "mode": "managed",
+      "type": "aws_lb_target_group",
+      "name": "main",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:elasticloadbalancing:eu-west-1:851725374695:targetgroup/api-20250710200624936100000009/8dc4b9d1a4083496",
+            "arn_suffix": "targetgroup/api-20250710200624936100000009/8dc4b9d1a4083496",
+            "connection_termination": null,
+            "deregistration_delay": "300",
+            "health_check": [
+              {
+                "enabled": true,
+                "healthy_threshold": 3,
+                "interval": 30,
+                "matcher": "200-299",
+                "path": "/health",
+                "port": "traffic-port",
+                "protocol": "HTTP",
+                "timeout": 5,
+                "unhealthy_threshold": 3
+              }
+            ],
+            "id": "arn:aws:elasticloadbalancing:eu-west-1:851725374695:targetgroup/api-20250710200624936100000009/8dc4b9d1a4083496",
+            "ip_address_type": "ipv4",
+            "lambda_multi_value_headers_enabled": false,
+            "load_balancer_arns": [],
+            "load_balancing_algorithm_type": "round_robin",
+            "load_balancing_anomaly_mitigation": "off",
+            "load_balancing_cross_zone_enabled": "use_load_balancer_configuration",
+            "name": "api-20250710200624936100000009",
+            "name_prefix": "api-",
+            "port": 8080,
+            "preserve_client_ip": null,
+            "protocol": "HTTP",
+            "protocol_version": "HTTP1",
+            "proxy_protocol_v2": false,
+            "region": "eu-west-1",
+            "slow_start": 0,
+            "stickiness": [
+              {
+                "cookie_duration": 86400,
+                "cookie_name": "",
+                "enabled": false,
+                "type": "lb_cookie"
+              }
+            ],
+            "tags": {
+              "Component": "load-balancer",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "api-",
+              "Project": "StreamAMG"
+            },
+            "tags_all": {
+              "Component": "load-balancer",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "api-",
+              "Project": "StreamAMG"
+            },
+            "target_failover": [
+              {
+                "on_deregistration": null,
+                "on_unhealthy": null
+              }
+            ],
+            "target_group_health": [
+              {
+                "dns_failover": [
+                  {
+                    "minimum_healthy_targets_count": "1",
+                    "minimum_healthy_targets_percentage": "off"
+                  }
+                ],
+                "unhealthy_state_routing": [
+                  {
+                    "minimum_healthy_targets_count": 1,
+                    "minimum_healthy_targets_percentage": "off"
+                  }
+                ]
+              }
+            ],
+            "target_health_state": [
+              {
+                "enable_unhealthy_connection_termination": null,
+                "unhealthy_draining_interval": null
+              }
+            ],
+            "target_type": "ip",
+            "vpc_id": "vpc-0735e4a732cddc771"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_vpc.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.alb.module.internal_alb",
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:security-group/sg-0e4fc4654fd352434",
+            "description": "Managed by Terraform",
+            "egress": [],
+            "id": "sg-0e4fc4654fd352434",
+            "ingress": [],
+            "name": "dev-streamamg-alb-2025071020062506650000000a",
+            "name_prefix": "dev-streamamg-alb-",
+            "owner_id": "851725374695",
+            "region": "eu-west-1",
+            "revoke_rules_on_delete": false,
+            "tags": {
+              "Component": "load-balancer",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-alb",
+              "Project": "StreamAMG"
+            },
+            "tags_all": {
+              "Component": "load-balancer",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-alb",
+              "Project": "StreamAMG"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0735e4a732cddc771"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6OTAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_vpc.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.ecs",
+      "mode": "managed",
+      "type": "aws_cloudwatch_log_group",
+      "name": "ecs_service",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:logs:eu-west-1:851725374695:log-group:/ecs/my-service",
+            "id": "/ecs/my-service",
+            "kms_key_id": "",
+            "log_group_class": "STANDARD",
+            "name": "/ecs/my-service",
+            "name_prefix": "",
+            "region": "eu-west-1",
+            "retention_in_days": 7,
+            "skip_destroy": false,
+            "tags": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            },
+            "tags_all": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            }
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.alb.module.internal_alb.aws_lambda_permission.lb",
+            "module.alb.module.internal_alb.aws_lb.this",
+            "module.alb.module.internal_alb.aws_lb_listener.frontend_http_tcp",
+            "module.alb.module.internal_alb.aws_lb_listener.frontend_https",
+            "module.alb.module.internal_alb.aws_lb_listener_certificate.https_listener",
+            "module.alb.module.internal_alb.aws_lb_listener_rule.http_tcp_listener_rule",
+            "module.alb.module.internal_alb.aws_lb_listener_rule.https_listener_rule",
+            "module.alb.module.internal_alb.aws_lb_target_group.main",
+            "module.alb.module.internal_alb.aws_lb_target_group_attachment.this",
+            "module.alb.module.internal_alb.aws_security_group.this",
+            "module.alb.module.internal_alb.aws_security_group_rule.this",
+            "module.alb.module.internal_alb.aws_wafv2_web_acl_association.this",
+            "module.security_groups.aws_security_group.alb",
+            "module.vpc.aws_cloudwatch_log_group.vpc_flow_logs",
+            "module.vpc.aws_iam_role.vpc_flow_logs",
+            "module.vpc.aws_iam_role_policy.vpc_flow_logs",
+            "module.vpc.module.vpc.aws_cloudwatch_log_group.flow_log",
+            "module.vpc.module.vpc.aws_customer_gateway.this",
+            "module.vpc.module.vpc.aws_db_subnet_group.database",
+            "module.vpc.module.vpc.aws_default_network_acl.this",
+            "module.vpc.module.vpc.aws_default_route_table.default",
+            "module.vpc.module.vpc.aws_default_security_group.this",
+            "module.vpc.module.vpc.aws_default_vpc.this",
+            "module.vpc.module.vpc.aws_egress_only_internet_gateway.this",
+            "module.vpc.module.vpc.aws_eip.nat",
+            "module.vpc.module.vpc.aws_elasticache_subnet_group.elasticache",
+            "module.vpc.module.vpc.aws_flow_log.this",
+            "module.vpc.module.vpc.aws_iam_policy.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_iam_role.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_iam_role_policy_attachment.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_internet_gateway.this",
+            "module.vpc.module.vpc.aws_nat_gateway.this",
+            "module.vpc.module.vpc.aws_network_acl.database",
+            "module.vpc.module.vpc.aws_network_acl.elasticache",
+            "module.vpc.module.vpc.aws_network_acl.intra",
+            "module.vpc.module.vpc.aws_network_acl.outpost",
+            "module.vpc.module.vpc.aws_network_acl.private",
+            "module.vpc.module.vpc.aws_network_acl.public",
+            "module.vpc.module.vpc.aws_network_acl.redshift",
+            "module.vpc.module.vpc.aws_network_acl_rule.database_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.database_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.elasticache_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.elasticache_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.intra_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.intra_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.outpost_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.outpost_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.private_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.private_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.public_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.public_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.redshift_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.redshift_outbound",
+            "module.vpc.module.vpc.aws_redshift_subnet_group.redshift",
+            "module.vpc.module.vpc.aws_route.database_dns64_nat_gateway",
+            "module.vpc.module.vpc.aws_route.database_internet_gateway",
+            "module.vpc.module.vpc.aws_route.database_ipv6_egress",
+            "module.vpc.module.vpc.aws_route.database_nat_gateway",
+            "module.vpc.module.vpc.aws_route.private_dns64_nat_gateway",
+            "module.vpc.module.vpc.aws_route.private_ipv6_egress",
+            "module.vpc.module.vpc.aws_route.private_nat_gateway",
+            "module.vpc.module.vpc.aws_route.public_internet_gateway",
+            "module.vpc.module.vpc.aws_route.public_internet_gateway_ipv6",
+            "module.vpc.module.vpc.aws_route_table.database",
+            "module.vpc.module.vpc.aws_route_table.elasticache",
+            "module.vpc.module.vpc.aws_route_table.intra",
+            "module.vpc.module.vpc.aws_route_table.private",
+            "module.vpc.module.vpc.aws_route_table.public",
+            "module.vpc.module.vpc.aws_route_table.redshift",
+            "module.vpc.module.vpc.aws_route_table_association.database",
+            "module.vpc.module.vpc.aws_route_table_association.elasticache",
+            "module.vpc.module.vpc.aws_route_table_association.intra",
+            "module.vpc.module.vpc.aws_route_table_association.outpost",
+            "module.vpc.module.vpc.aws_route_table_association.private",
+            "module.vpc.module.vpc.aws_route_table_association.public",
+            "module.vpc.module.vpc.aws_route_table_association.redshift",
+            "module.vpc.module.vpc.aws_route_table_association.redshift_public",
+            "module.vpc.module.vpc.aws_subnet.database",
+            "module.vpc.module.vpc.aws_subnet.elasticache",
+            "module.vpc.module.vpc.aws_subnet.intra",
+            "module.vpc.module.vpc.aws_subnet.outpost",
+            "module.vpc.module.vpc.aws_subnet.private",
+            "module.vpc.module.vpc.aws_subnet.public",
+            "module.vpc.module.vpc.aws_subnet.redshift",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_block_public_access_exclusion.this",
+            "module.vpc.module.vpc.aws_vpc_block_public_access_options.this",
+            "module.vpc.module.vpc.aws_vpc_dhcp_options.this",
+            "module.vpc.module.vpc.aws_vpc_dhcp_options_association.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this",
+            "module.vpc.module.vpc.aws_vpn_gateway.this",
+            "module.vpc.module.vpc.aws_vpn_gateway_attachment.this",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.intra",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.private",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.public",
+            "module.vpc.module.vpc.data.aws_caller_identity.current",
+            "module.vpc.module.vpc.data.aws_iam_policy_document.flow_log_cloudwatch_assume_role",
+            "module.vpc.module.vpc.data.aws_iam_policy_document.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.data.aws_partition.current",
+            "module.vpc.module.vpc.data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.ecs",
+      "mode": "managed",
+      "type": "aws_ecs_cluster",
+      "name": "main",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecs:eu-west-1:851725374695:cluster/dev-my-cluster",
+            "configuration": [],
+            "id": "arn:aws:ecs:eu-west-1:851725374695:cluster/dev-my-cluster",
+            "name": "dev-my-cluster",
+            "region": "eu-west-1",
+            "service_connect_defaults": [],
+            "setting": [
+              {
+                "name": "containerInsights",
+                "value": "disabled"
+              }
+            ],
+            "tags": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            },
+            "tags_all": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            }
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.alb.module.internal_alb.aws_lambda_permission.lb",
+            "module.alb.module.internal_alb.aws_lb.this",
+            "module.alb.module.internal_alb.aws_lb_listener.frontend_http_tcp",
+            "module.alb.module.internal_alb.aws_lb_listener.frontend_https",
+            "module.alb.module.internal_alb.aws_lb_listener_certificate.https_listener",
+            "module.alb.module.internal_alb.aws_lb_listener_rule.http_tcp_listener_rule",
+            "module.alb.module.internal_alb.aws_lb_listener_rule.https_listener_rule",
+            "module.alb.module.internal_alb.aws_lb_target_group.main",
+            "module.alb.module.internal_alb.aws_lb_target_group_attachment.this",
+            "module.alb.module.internal_alb.aws_security_group.this",
+            "module.alb.module.internal_alb.aws_security_group_rule.this",
+            "module.alb.module.internal_alb.aws_wafv2_web_acl_association.this",
+            "module.security_groups.aws_security_group.alb",
+            "module.vpc.aws_cloudwatch_log_group.vpc_flow_logs",
+            "module.vpc.aws_iam_role.vpc_flow_logs",
+            "module.vpc.aws_iam_role_policy.vpc_flow_logs",
+            "module.vpc.module.vpc.aws_cloudwatch_log_group.flow_log",
+            "module.vpc.module.vpc.aws_customer_gateway.this",
+            "module.vpc.module.vpc.aws_db_subnet_group.database",
+            "module.vpc.module.vpc.aws_default_network_acl.this",
+            "module.vpc.module.vpc.aws_default_route_table.default",
+            "module.vpc.module.vpc.aws_default_security_group.this",
+            "module.vpc.module.vpc.aws_default_vpc.this",
+            "module.vpc.module.vpc.aws_egress_only_internet_gateway.this",
+            "module.vpc.module.vpc.aws_eip.nat",
+            "module.vpc.module.vpc.aws_elasticache_subnet_group.elasticache",
+            "module.vpc.module.vpc.aws_flow_log.this",
+            "module.vpc.module.vpc.aws_iam_policy.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_iam_role.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_iam_role_policy_attachment.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_internet_gateway.this",
+            "module.vpc.module.vpc.aws_nat_gateway.this",
+            "module.vpc.module.vpc.aws_network_acl.database",
+            "module.vpc.module.vpc.aws_network_acl.elasticache",
+            "module.vpc.module.vpc.aws_network_acl.intra",
+            "module.vpc.module.vpc.aws_network_acl.outpost",
+            "module.vpc.module.vpc.aws_network_acl.private",
+            "module.vpc.module.vpc.aws_network_acl.public",
+            "module.vpc.module.vpc.aws_network_acl.redshift",
+            "module.vpc.module.vpc.aws_network_acl_rule.database_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.database_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.elasticache_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.elasticache_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.intra_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.intra_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.outpost_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.outpost_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.private_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.private_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.public_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.public_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.redshift_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.redshift_outbound",
+            "module.vpc.module.vpc.aws_redshift_subnet_group.redshift",
+            "module.vpc.module.vpc.aws_route.database_dns64_nat_gateway",
+            "module.vpc.module.vpc.aws_route.database_internet_gateway",
+            "module.vpc.module.vpc.aws_route.database_ipv6_egress",
+            "module.vpc.module.vpc.aws_route.database_nat_gateway",
+            "module.vpc.module.vpc.aws_route.private_dns64_nat_gateway",
+            "module.vpc.module.vpc.aws_route.private_ipv6_egress",
+            "module.vpc.module.vpc.aws_route.private_nat_gateway",
+            "module.vpc.module.vpc.aws_route.public_internet_gateway",
+            "module.vpc.module.vpc.aws_route.public_internet_gateway_ipv6",
+            "module.vpc.module.vpc.aws_route_table.database",
+            "module.vpc.module.vpc.aws_route_table.elasticache",
+            "module.vpc.module.vpc.aws_route_table.intra",
+            "module.vpc.module.vpc.aws_route_table.private",
+            "module.vpc.module.vpc.aws_route_table.public",
+            "module.vpc.module.vpc.aws_route_table.redshift",
+            "module.vpc.module.vpc.aws_route_table_association.database",
+            "module.vpc.module.vpc.aws_route_table_association.elasticache",
+            "module.vpc.module.vpc.aws_route_table_association.intra",
+            "module.vpc.module.vpc.aws_route_table_association.outpost",
+            "module.vpc.module.vpc.aws_route_table_association.private",
+            "module.vpc.module.vpc.aws_route_table_association.public",
+            "module.vpc.module.vpc.aws_route_table_association.redshift",
+            "module.vpc.module.vpc.aws_route_table_association.redshift_public",
+            "module.vpc.module.vpc.aws_subnet.database",
+            "module.vpc.module.vpc.aws_subnet.elasticache",
+            "module.vpc.module.vpc.aws_subnet.intra",
+            "module.vpc.module.vpc.aws_subnet.outpost",
+            "module.vpc.module.vpc.aws_subnet.private",
+            "module.vpc.module.vpc.aws_subnet.public",
+            "module.vpc.module.vpc.aws_subnet.redshift",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_block_public_access_exclusion.this",
+            "module.vpc.module.vpc.aws_vpc_block_public_access_options.this",
+            "module.vpc.module.vpc.aws_vpc_dhcp_options.this",
+            "module.vpc.module.vpc.aws_vpc_dhcp_options_association.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this",
+            "module.vpc.module.vpc.aws_vpn_gateway.this",
+            "module.vpc.module.vpc.aws_vpn_gateway_attachment.this",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.intra",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.private",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.public",
+            "module.vpc.module.vpc.data.aws_caller_identity.current",
+            "module.vpc.module.vpc.data.aws_iam_policy_document.flow_log_cloudwatch_assume_role",
+            "module.vpc.module.vpc.data.aws_iam_policy_document.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.data.aws_partition.current",
+            "module.vpc.module.vpc.data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.ecs",
+      "mode": "managed",
+      "type": "aws_ecs_task_definition",
+      "name": "app",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:eu-west-1:851725374695:task-definition/my-service-task:2",
+            "arn_without_revision": "arn:aws:ecs:eu-west-1:851725374695:task-definition/my-service-task",
+            "container_definitions": "[{\"cpu\":512,\"environment\":[{\"name\":\"name\",\"value\":\"ENV\"},{\"name\":\"value\",\"value\":\"dev\"}],\"essential\":true,\"image\":\"nginx:latest\",\"logConfiguration\":{\"logDriver\":\"awslogs\",\"options\":{\"awslogs-stream-prefix\":\"ecs\",\"awslogs-group\":\"/ecs/my-service\",\"awslogs-region\":\"eu-west-1\"}},\"memory\":1024,\"mountPoints\":[],\"name\":\"my-service\",\"portMappings\":[{\"containerPort\":8080,\"hostPort\":8080,\"protocol\":\"tcp\"}],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "512",
+            "enable_fault_injection": false,
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::851725374695:role/ecs-exec-role-20250710200612954700000004",
+            "family": "my-service-task",
+            "id": "my-service-task",
+            "ipc_mode": "",
+            "memory": "1024",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "region": "eu-west-1",
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 2,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            },
+            "tags_all": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            },
+            "task_role_arn": "arn:aws:iam::851725374695:role/ecs-task-role-20250710200612954700000003",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "module.alb.module.internal_alb.aws_lambda_permission.lb",
+            "module.alb.module.internal_alb.aws_lb.this",
+            "module.alb.module.internal_alb.aws_lb_listener.frontend_http_tcp",
+            "module.alb.module.internal_alb.aws_lb_listener.frontend_https",
+            "module.alb.module.internal_alb.aws_lb_listener_certificate.https_listener",
+            "module.alb.module.internal_alb.aws_lb_listener_rule.http_tcp_listener_rule",
+            "module.alb.module.internal_alb.aws_lb_listener_rule.https_listener_rule",
+            "module.alb.module.internal_alb.aws_lb_target_group.main",
+            "module.alb.module.internal_alb.aws_lb_target_group_attachment.this",
+            "module.alb.module.internal_alb.aws_security_group.this",
+            "module.alb.module.internal_alb.aws_security_group_rule.this",
+            "module.alb.module.internal_alb.aws_wafv2_web_acl_association.this",
+            "module.ecs_iam.aws_iam_role.ecs_execution_role",
+            "module.ecs_iam.aws_iam_role.ecs_task_role",
+            "module.security_groups.aws_security_group.alb",
+            "module.vpc.aws_cloudwatch_log_group.vpc_flow_logs",
+            "module.vpc.aws_iam_role.vpc_flow_logs",
+            "module.vpc.aws_iam_role_policy.vpc_flow_logs",
+            "module.vpc.module.vpc.aws_cloudwatch_log_group.flow_log",
+            "module.vpc.module.vpc.aws_customer_gateway.this",
+            "module.vpc.module.vpc.aws_db_subnet_group.database",
+            "module.vpc.module.vpc.aws_default_network_acl.this",
+            "module.vpc.module.vpc.aws_default_route_table.default",
+            "module.vpc.module.vpc.aws_default_security_group.this",
+            "module.vpc.module.vpc.aws_default_vpc.this",
+            "module.vpc.module.vpc.aws_egress_only_internet_gateway.this",
+            "module.vpc.module.vpc.aws_eip.nat",
+            "module.vpc.module.vpc.aws_elasticache_subnet_group.elasticache",
+            "module.vpc.module.vpc.aws_flow_log.this",
+            "module.vpc.module.vpc.aws_iam_policy.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_iam_role.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_iam_role_policy_attachment.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_internet_gateway.this",
+            "module.vpc.module.vpc.aws_nat_gateway.this",
+            "module.vpc.module.vpc.aws_network_acl.database",
+            "module.vpc.module.vpc.aws_network_acl.elasticache",
+            "module.vpc.module.vpc.aws_network_acl.intra",
+            "module.vpc.module.vpc.aws_network_acl.outpost",
+            "module.vpc.module.vpc.aws_network_acl.private",
+            "module.vpc.module.vpc.aws_network_acl.public",
+            "module.vpc.module.vpc.aws_network_acl.redshift",
+            "module.vpc.module.vpc.aws_network_acl_rule.database_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.database_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.elasticache_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.elasticache_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.intra_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.intra_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.outpost_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.outpost_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.private_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.private_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.public_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.public_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.redshift_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.redshift_outbound",
+            "module.vpc.module.vpc.aws_redshift_subnet_group.redshift",
+            "module.vpc.module.vpc.aws_route.database_dns64_nat_gateway",
+            "module.vpc.module.vpc.aws_route.database_internet_gateway",
+            "module.vpc.module.vpc.aws_route.database_ipv6_egress",
+            "module.vpc.module.vpc.aws_route.database_nat_gateway",
+            "module.vpc.module.vpc.aws_route.private_dns64_nat_gateway",
+            "module.vpc.module.vpc.aws_route.private_ipv6_egress",
+            "module.vpc.module.vpc.aws_route.private_nat_gateway",
+            "module.vpc.module.vpc.aws_route.public_internet_gateway",
+            "module.vpc.module.vpc.aws_route.public_internet_gateway_ipv6",
+            "module.vpc.module.vpc.aws_route_table.database",
+            "module.vpc.module.vpc.aws_route_table.elasticache",
+            "module.vpc.module.vpc.aws_route_table.intra",
+            "module.vpc.module.vpc.aws_route_table.private",
+            "module.vpc.module.vpc.aws_route_table.public",
+            "module.vpc.module.vpc.aws_route_table.redshift",
+            "module.vpc.module.vpc.aws_route_table_association.database",
+            "module.vpc.module.vpc.aws_route_table_association.elasticache",
+            "module.vpc.module.vpc.aws_route_table_association.intra",
+            "module.vpc.module.vpc.aws_route_table_association.outpost",
+            "module.vpc.module.vpc.aws_route_table_association.private",
+            "module.vpc.module.vpc.aws_route_table_association.public",
+            "module.vpc.module.vpc.aws_route_table_association.redshift",
+            "module.vpc.module.vpc.aws_route_table_association.redshift_public",
+            "module.vpc.module.vpc.aws_subnet.database",
+            "module.vpc.module.vpc.aws_subnet.elasticache",
+            "module.vpc.module.vpc.aws_subnet.intra",
+            "module.vpc.module.vpc.aws_subnet.outpost",
+            "module.vpc.module.vpc.aws_subnet.private",
+            "module.vpc.module.vpc.aws_subnet.public",
+            "module.vpc.module.vpc.aws_subnet.redshift",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_block_public_access_exclusion.this",
+            "module.vpc.module.vpc.aws_vpc_block_public_access_options.this",
+            "module.vpc.module.vpc.aws_vpc_dhcp_options.this",
+            "module.vpc.module.vpc.aws_vpc_dhcp_options_association.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this",
+            "module.vpc.module.vpc.aws_vpn_gateway.this",
+            "module.vpc.module.vpc.aws_vpn_gateway_attachment.this",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.intra",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.private",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.public",
+            "module.vpc.module.vpc.data.aws_caller_identity.current",
+            "module.vpc.module.vpc.data.aws_iam_policy_document.flow_log_cloudwatch_assume_role",
+            "module.vpc.module.vpc.data.aws_iam_policy_document.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.data.aws_partition.current",
+            "module.vpc.module.vpc.data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.ecs",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "ecs_execution_role",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::851725374695:role/ecs-exec-role-20250710200612953300000001",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ecs-tasks.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-07-10T20:06:13Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "ecs-exec-role-20250710200612953300000001",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+            ],
+            "max_session_duration": 3600,
+            "name": "ecs-exec-role-20250710200612953300000001",
+            "name_prefix": "ecs-exec-role-",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            },
+            "tags_all": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            },
+            "unique_id": "AROA4MTWJ2TTSVGTAMGKR"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.alb.module.internal_alb.aws_lambda_permission.lb",
+            "module.alb.module.internal_alb.aws_lb.this",
+            "module.alb.module.internal_alb.aws_lb_listener.frontend_http_tcp",
+            "module.alb.module.internal_alb.aws_lb_listener.frontend_https",
+            "module.alb.module.internal_alb.aws_lb_listener_certificate.https_listener",
+            "module.alb.module.internal_alb.aws_lb_listener_rule.http_tcp_listener_rule",
+            "module.alb.module.internal_alb.aws_lb_listener_rule.https_listener_rule",
+            "module.alb.module.internal_alb.aws_lb_target_group.main",
+            "module.alb.module.internal_alb.aws_lb_target_group_attachment.this",
+            "module.alb.module.internal_alb.aws_security_group.this",
+            "module.alb.module.internal_alb.aws_security_group_rule.this",
+            "module.alb.module.internal_alb.aws_wafv2_web_acl_association.this",
+            "module.security_groups.aws_security_group.alb",
+            "module.vpc.aws_cloudwatch_log_group.vpc_flow_logs",
+            "module.vpc.aws_iam_role.vpc_flow_logs",
+            "module.vpc.aws_iam_role_policy.vpc_flow_logs",
+            "module.vpc.module.vpc.aws_cloudwatch_log_group.flow_log",
+            "module.vpc.module.vpc.aws_customer_gateway.this",
+            "module.vpc.module.vpc.aws_db_subnet_group.database",
+            "module.vpc.module.vpc.aws_default_network_acl.this",
+            "module.vpc.module.vpc.aws_default_route_table.default",
+            "module.vpc.module.vpc.aws_default_security_group.this",
+            "module.vpc.module.vpc.aws_default_vpc.this",
+            "module.vpc.module.vpc.aws_egress_only_internet_gateway.this",
+            "module.vpc.module.vpc.aws_eip.nat",
+            "module.vpc.module.vpc.aws_elasticache_subnet_group.elasticache",
+            "module.vpc.module.vpc.aws_flow_log.this",
+            "module.vpc.module.vpc.aws_iam_policy.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_iam_role.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_iam_role_policy_attachment.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_internet_gateway.this",
+            "module.vpc.module.vpc.aws_nat_gateway.this",
+            "module.vpc.module.vpc.aws_network_acl.database",
+            "module.vpc.module.vpc.aws_network_acl.elasticache",
+            "module.vpc.module.vpc.aws_network_acl.intra",
+            "module.vpc.module.vpc.aws_network_acl.outpost",
+            "module.vpc.module.vpc.aws_network_acl.private",
+            "module.vpc.module.vpc.aws_network_acl.public",
+            "module.vpc.module.vpc.aws_network_acl.redshift",
+            "module.vpc.module.vpc.aws_network_acl_rule.database_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.database_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.elasticache_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.elasticache_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.intra_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.intra_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.outpost_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.outpost_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.private_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.private_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.public_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.public_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.redshift_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.redshift_outbound",
+            "module.vpc.module.vpc.aws_redshift_subnet_group.redshift",
+            "module.vpc.module.vpc.aws_route.database_dns64_nat_gateway",
+            "module.vpc.module.vpc.aws_route.database_internet_gateway",
+            "module.vpc.module.vpc.aws_route.database_ipv6_egress",
+            "module.vpc.module.vpc.aws_route.database_nat_gateway",
+            "module.vpc.module.vpc.aws_route.private_dns64_nat_gateway",
+            "module.vpc.module.vpc.aws_route.private_ipv6_egress",
+            "module.vpc.module.vpc.aws_route.private_nat_gateway",
+            "module.vpc.module.vpc.aws_route.public_internet_gateway",
+            "module.vpc.module.vpc.aws_route.public_internet_gateway_ipv6",
+            "module.vpc.module.vpc.aws_route_table.database",
+            "module.vpc.module.vpc.aws_route_table.elasticache",
+            "module.vpc.module.vpc.aws_route_table.intra",
+            "module.vpc.module.vpc.aws_route_table.private",
+            "module.vpc.module.vpc.aws_route_table.public",
+            "module.vpc.module.vpc.aws_route_table.redshift",
+            "module.vpc.module.vpc.aws_route_table_association.database",
+            "module.vpc.module.vpc.aws_route_table_association.elasticache",
+            "module.vpc.module.vpc.aws_route_table_association.intra",
+            "module.vpc.module.vpc.aws_route_table_association.outpost",
+            "module.vpc.module.vpc.aws_route_table_association.private",
+            "module.vpc.module.vpc.aws_route_table_association.public",
+            "module.vpc.module.vpc.aws_route_table_association.redshift",
+            "module.vpc.module.vpc.aws_route_table_association.redshift_public",
+            "module.vpc.module.vpc.aws_subnet.database",
+            "module.vpc.module.vpc.aws_subnet.elasticache",
+            "module.vpc.module.vpc.aws_subnet.intra",
+            "module.vpc.module.vpc.aws_subnet.outpost",
+            "module.vpc.module.vpc.aws_subnet.private",
+            "module.vpc.module.vpc.aws_subnet.public",
+            "module.vpc.module.vpc.aws_subnet.redshift",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_block_public_access_exclusion.this",
+            "module.vpc.module.vpc.aws_vpc_block_public_access_options.this",
+            "module.vpc.module.vpc.aws_vpc_dhcp_options.this",
+            "module.vpc.module.vpc.aws_vpc_dhcp_options_association.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this",
+            "module.vpc.module.vpc.aws_vpn_gateway.this",
+            "module.vpc.module.vpc.aws_vpn_gateway_attachment.this",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.intra",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.private",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.public",
+            "module.vpc.module.vpc.data.aws_caller_identity.current",
+            "module.vpc.module.vpc.data.aws_iam_policy_document.flow_log_cloudwatch_assume_role",
+            "module.vpc.module.vpc.data.aws_iam_policy_document.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.data.aws_partition.current",
+            "module.vpc.module.vpc.data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.ecs",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "ecs_task_role",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::851725374695:role/ecs-task-role-20250710200612954100000002",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ecs-tasks.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-07-10T20:06:13Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "ecs-task-role-20250710200612954100000002",
+            "inline_policy": [],
+            "managed_policy_arns": [],
+            "max_session_duration": 3600,
+            "name": "ecs-task-role-20250710200612954100000002",
+            "name_prefix": "ecs-task-role-",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            },
+            "tags_all": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            },
+            "unique_id": "AROA4MTWJ2TTXC5SC3RZL"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.alb.module.internal_alb.aws_lambda_permission.lb",
+            "module.alb.module.internal_alb.aws_lb.this",
+            "module.alb.module.internal_alb.aws_lb_listener.frontend_http_tcp",
+            "module.alb.module.internal_alb.aws_lb_listener.frontend_https",
+            "module.alb.module.internal_alb.aws_lb_listener_certificate.https_listener",
+            "module.alb.module.internal_alb.aws_lb_listener_rule.http_tcp_listener_rule",
+            "module.alb.module.internal_alb.aws_lb_listener_rule.https_listener_rule",
+            "module.alb.module.internal_alb.aws_lb_target_group.main",
+            "module.alb.module.internal_alb.aws_lb_target_group_attachment.this",
+            "module.alb.module.internal_alb.aws_security_group.this",
+            "module.alb.module.internal_alb.aws_security_group_rule.this",
+            "module.alb.module.internal_alb.aws_wafv2_web_acl_association.this",
+            "module.security_groups.aws_security_group.alb",
+            "module.vpc.aws_cloudwatch_log_group.vpc_flow_logs",
+            "module.vpc.aws_iam_role.vpc_flow_logs",
+            "module.vpc.aws_iam_role_policy.vpc_flow_logs",
+            "module.vpc.module.vpc.aws_cloudwatch_log_group.flow_log",
+            "module.vpc.module.vpc.aws_customer_gateway.this",
+            "module.vpc.module.vpc.aws_db_subnet_group.database",
+            "module.vpc.module.vpc.aws_default_network_acl.this",
+            "module.vpc.module.vpc.aws_default_route_table.default",
+            "module.vpc.module.vpc.aws_default_security_group.this",
+            "module.vpc.module.vpc.aws_default_vpc.this",
+            "module.vpc.module.vpc.aws_egress_only_internet_gateway.this",
+            "module.vpc.module.vpc.aws_eip.nat",
+            "module.vpc.module.vpc.aws_elasticache_subnet_group.elasticache",
+            "module.vpc.module.vpc.aws_flow_log.this",
+            "module.vpc.module.vpc.aws_iam_policy.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_iam_role.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_iam_role_policy_attachment.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_internet_gateway.this",
+            "module.vpc.module.vpc.aws_nat_gateway.this",
+            "module.vpc.module.vpc.aws_network_acl.database",
+            "module.vpc.module.vpc.aws_network_acl.elasticache",
+            "module.vpc.module.vpc.aws_network_acl.intra",
+            "module.vpc.module.vpc.aws_network_acl.outpost",
+            "module.vpc.module.vpc.aws_network_acl.private",
+            "module.vpc.module.vpc.aws_network_acl.public",
+            "module.vpc.module.vpc.aws_network_acl.redshift",
+            "module.vpc.module.vpc.aws_network_acl_rule.database_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.database_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.elasticache_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.elasticache_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.intra_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.intra_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.outpost_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.outpost_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.private_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.private_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.public_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.public_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.redshift_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.redshift_outbound",
+            "module.vpc.module.vpc.aws_redshift_subnet_group.redshift",
+            "module.vpc.module.vpc.aws_route.database_dns64_nat_gateway",
+            "module.vpc.module.vpc.aws_route.database_internet_gateway",
+            "module.vpc.module.vpc.aws_route.database_ipv6_egress",
+            "module.vpc.module.vpc.aws_route.database_nat_gateway",
+            "module.vpc.module.vpc.aws_route.private_dns64_nat_gateway",
+            "module.vpc.module.vpc.aws_route.private_ipv6_egress",
+            "module.vpc.module.vpc.aws_route.private_nat_gateway",
+            "module.vpc.module.vpc.aws_route.public_internet_gateway",
+            "module.vpc.module.vpc.aws_route.public_internet_gateway_ipv6",
+            "module.vpc.module.vpc.aws_route_table.database",
+            "module.vpc.module.vpc.aws_route_table.elasticache",
+            "module.vpc.module.vpc.aws_route_table.intra",
+            "module.vpc.module.vpc.aws_route_table.private",
+            "module.vpc.module.vpc.aws_route_table.public",
+            "module.vpc.module.vpc.aws_route_table.redshift",
+            "module.vpc.module.vpc.aws_route_table_association.database",
+            "module.vpc.module.vpc.aws_route_table_association.elasticache",
+            "module.vpc.module.vpc.aws_route_table_association.intra",
+            "module.vpc.module.vpc.aws_route_table_association.outpost",
+            "module.vpc.module.vpc.aws_route_table_association.private",
+            "module.vpc.module.vpc.aws_route_table_association.public",
+            "module.vpc.module.vpc.aws_route_table_association.redshift",
+            "module.vpc.module.vpc.aws_route_table_association.redshift_public",
+            "module.vpc.module.vpc.aws_subnet.database",
+            "module.vpc.module.vpc.aws_subnet.elasticache",
+            "module.vpc.module.vpc.aws_subnet.intra",
+            "module.vpc.module.vpc.aws_subnet.outpost",
+            "module.vpc.module.vpc.aws_subnet.private",
+            "module.vpc.module.vpc.aws_subnet.public",
+            "module.vpc.module.vpc.aws_subnet.redshift",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_block_public_access_exclusion.this",
+            "module.vpc.module.vpc.aws_vpc_block_public_access_options.this",
+            "module.vpc.module.vpc.aws_vpc_dhcp_options.this",
+            "module.vpc.module.vpc.aws_vpc_dhcp_options_association.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this",
+            "module.vpc.module.vpc.aws_vpn_gateway.this",
+            "module.vpc.module.vpc.aws_vpn_gateway_attachment.this",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.intra",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.private",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.public",
+            "module.vpc.module.vpc.data.aws_caller_identity.current",
+            "module.vpc.module.vpc.data.aws_iam_policy_document.flow_log_cloudwatch_assume_role",
+            "module.vpc.module.vpc.data.aws_iam_policy_document.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.data.aws_partition.current",
+            "module.vpc.module.vpc.data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.ecs",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "ecs_execution",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "ecs-exec-role-20250710200612953300000001/arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+            "policy_arn": "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+            "role": "ecs-exec-role-20250710200612953300000001"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.alb.module.internal_alb.aws_lambda_permission.lb",
+            "module.alb.module.internal_alb.aws_lb.this",
+            "module.alb.module.internal_alb.aws_lb_listener.frontend_http_tcp",
+            "module.alb.module.internal_alb.aws_lb_listener.frontend_https",
+            "module.alb.module.internal_alb.aws_lb_listener_certificate.https_listener",
+            "module.alb.module.internal_alb.aws_lb_listener_rule.http_tcp_listener_rule",
+            "module.alb.module.internal_alb.aws_lb_listener_rule.https_listener_rule",
+            "module.alb.module.internal_alb.aws_lb_target_group.main",
+            "module.alb.module.internal_alb.aws_lb_target_group_attachment.this",
+            "module.alb.module.internal_alb.aws_security_group.this",
+            "module.alb.module.internal_alb.aws_security_group_rule.this",
+            "module.alb.module.internal_alb.aws_wafv2_web_acl_association.this",
+            "module.ecs.aws_iam_role.ecs_execution_role",
+            "module.security_groups.aws_security_group.alb",
+            "module.vpc.aws_cloudwatch_log_group.vpc_flow_logs",
+            "module.vpc.aws_iam_role.vpc_flow_logs",
+            "module.vpc.aws_iam_role_policy.vpc_flow_logs",
+            "module.vpc.module.vpc.aws_cloudwatch_log_group.flow_log",
+            "module.vpc.module.vpc.aws_customer_gateway.this",
+            "module.vpc.module.vpc.aws_db_subnet_group.database",
+            "module.vpc.module.vpc.aws_default_network_acl.this",
+            "module.vpc.module.vpc.aws_default_route_table.default",
+            "module.vpc.module.vpc.aws_default_security_group.this",
+            "module.vpc.module.vpc.aws_default_vpc.this",
+            "module.vpc.module.vpc.aws_egress_only_internet_gateway.this",
+            "module.vpc.module.vpc.aws_eip.nat",
+            "module.vpc.module.vpc.aws_elasticache_subnet_group.elasticache",
+            "module.vpc.module.vpc.aws_flow_log.this",
+            "module.vpc.module.vpc.aws_iam_policy.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_iam_role.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_iam_role_policy_attachment.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_internet_gateway.this",
+            "module.vpc.module.vpc.aws_nat_gateway.this",
+            "module.vpc.module.vpc.aws_network_acl.database",
+            "module.vpc.module.vpc.aws_network_acl.elasticache",
+            "module.vpc.module.vpc.aws_network_acl.intra",
+            "module.vpc.module.vpc.aws_network_acl.outpost",
+            "module.vpc.module.vpc.aws_network_acl.private",
+            "module.vpc.module.vpc.aws_network_acl.public",
+            "module.vpc.module.vpc.aws_network_acl.redshift",
+            "module.vpc.module.vpc.aws_network_acl_rule.database_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.database_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.elasticache_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.elasticache_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.intra_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.intra_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.outpost_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.outpost_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.private_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.private_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.public_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.public_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.redshift_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.redshift_outbound",
+            "module.vpc.module.vpc.aws_redshift_subnet_group.redshift",
+            "module.vpc.module.vpc.aws_route.database_dns64_nat_gateway",
+            "module.vpc.module.vpc.aws_route.database_internet_gateway",
+            "module.vpc.module.vpc.aws_route.database_ipv6_egress",
+            "module.vpc.module.vpc.aws_route.database_nat_gateway",
+            "module.vpc.module.vpc.aws_route.private_dns64_nat_gateway",
+            "module.vpc.module.vpc.aws_route.private_ipv6_egress",
+            "module.vpc.module.vpc.aws_route.private_nat_gateway",
+            "module.vpc.module.vpc.aws_route.public_internet_gateway",
+            "module.vpc.module.vpc.aws_route.public_internet_gateway_ipv6",
+            "module.vpc.module.vpc.aws_route_table.database",
+            "module.vpc.module.vpc.aws_route_table.elasticache",
+            "module.vpc.module.vpc.aws_route_table.intra",
+            "module.vpc.module.vpc.aws_route_table.private",
+            "module.vpc.module.vpc.aws_route_table.public",
+            "module.vpc.module.vpc.aws_route_table.redshift",
+            "module.vpc.module.vpc.aws_route_table_association.database",
+            "module.vpc.module.vpc.aws_route_table_association.elasticache",
+            "module.vpc.module.vpc.aws_route_table_association.intra",
+            "module.vpc.module.vpc.aws_route_table_association.outpost",
+            "module.vpc.module.vpc.aws_route_table_association.private",
+            "module.vpc.module.vpc.aws_route_table_association.public",
+            "module.vpc.module.vpc.aws_route_table_association.redshift",
+            "module.vpc.module.vpc.aws_route_table_association.redshift_public",
+            "module.vpc.module.vpc.aws_subnet.database",
+            "module.vpc.module.vpc.aws_subnet.elasticache",
+            "module.vpc.module.vpc.aws_subnet.intra",
+            "module.vpc.module.vpc.aws_subnet.outpost",
+            "module.vpc.module.vpc.aws_subnet.private",
+            "module.vpc.module.vpc.aws_subnet.public",
+            "module.vpc.module.vpc.aws_subnet.redshift",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_block_public_access_exclusion.this",
+            "module.vpc.module.vpc.aws_vpc_block_public_access_options.this",
+            "module.vpc.module.vpc.aws_vpc_dhcp_options.this",
+            "module.vpc.module.vpc.aws_vpc_dhcp_options_association.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this",
+            "module.vpc.module.vpc.aws_vpn_gateway.this",
+            "module.vpc.module.vpc.aws_vpn_gateway_attachment.this",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.intra",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.private",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.public",
+            "module.vpc.module.vpc.data.aws_caller_identity.current",
+            "module.vpc.module.vpc.data.aws_iam_policy_document.flow_log_cloudwatch_assume_role",
+            "module.vpc.module.vpc.data.aws_iam_policy_document.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.data.aws_partition.current",
+            "module.vpc.module.vpc.data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.ecs",
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "ecs_service",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:security-group/sg-028850ff0474ba4c9",
+            "description": "Managed by Terraform",
+            "egress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 0,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "-1",
+                "security_groups": [],
+                "self": false,
+                "to_port": 0
+              }
+            ],
+            "id": "sg-028850ff0474ba4c9",
+            "ingress": [],
+            "name": "my-service-sg-20250710200624545400000008",
+            "name_prefix": "my-service-sg-",
+            "owner_id": "851725374695",
+            "region": "eu-west-1",
+            "revoke_rules_on_delete": false,
+            "tags": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "my-service-sg",
+              "Project": "StreamAMG"
+            },
+            "tags_all": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "my-service-sg",
+              "Project": "StreamAMG"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0735e4a732cddc771"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6OTAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "module.alb.module.internal_alb.aws_lambda_permission.lb",
+            "module.alb.module.internal_alb.aws_lb.this",
+            "module.alb.module.internal_alb.aws_lb_listener.frontend_http_tcp",
+            "module.alb.module.internal_alb.aws_lb_listener.frontend_https",
+            "module.alb.module.internal_alb.aws_lb_listener_certificate.https_listener",
+            "module.alb.module.internal_alb.aws_lb_listener_rule.http_tcp_listener_rule",
+            "module.alb.module.internal_alb.aws_lb_listener_rule.https_listener_rule",
+            "module.alb.module.internal_alb.aws_lb_target_group.main",
+            "module.alb.module.internal_alb.aws_lb_target_group_attachment.this",
+            "module.alb.module.internal_alb.aws_security_group.this",
+            "module.alb.module.internal_alb.aws_security_group_rule.this",
+            "module.alb.module.internal_alb.aws_wafv2_web_acl_association.this",
+            "module.security_groups.aws_security_group.alb",
+            "module.vpc.aws_cloudwatch_log_group.vpc_flow_logs",
+            "module.vpc.aws_iam_role.vpc_flow_logs",
+            "module.vpc.aws_iam_role_policy.vpc_flow_logs",
+            "module.vpc.module.vpc.aws_cloudwatch_log_group.flow_log",
+            "module.vpc.module.vpc.aws_customer_gateway.this",
+            "module.vpc.module.vpc.aws_db_subnet_group.database",
+            "module.vpc.module.vpc.aws_default_network_acl.this",
+            "module.vpc.module.vpc.aws_default_route_table.default",
+            "module.vpc.module.vpc.aws_default_security_group.this",
+            "module.vpc.module.vpc.aws_default_vpc.this",
+            "module.vpc.module.vpc.aws_egress_only_internet_gateway.this",
+            "module.vpc.module.vpc.aws_eip.nat",
+            "module.vpc.module.vpc.aws_elasticache_subnet_group.elasticache",
+            "module.vpc.module.vpc.aws_flow_log.this",
+            "module.vpc.module.vpc.aws_iam_policy.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_iam_role.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_iam_role_policy_attachment.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.aws_internet_gateway.this",
+            "module.vpc.module.vpc.aws_nat_gateway.this",
+            "module.vpc.module.vpc.aws_network_acl.database",
+            "module.vpc.module.vpc.aws_network_acl.elasticache",
+            "module.vpc.module.vpc.aws_network_acl.intra",
+            "module.vpc.module.vpc.aws_network_acl.outpost",
+            "module.vpc.module.vpc.aws_network_acl.private",
+            "module.vpc.module.vpc.aws_network_acl.public",
+            "module.vpc.module.vpc.aws_network_acl.redshift",
+            "module.vpc.module.vpc.aws_network_acl_rule.database_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.database_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.elasticache_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.elasticache_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.intra_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.intra_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.outpost_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.outpost_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.private_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.private_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.public_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.public_outbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.redshift_inbound",
+            "module.vpc.module.vpc.aws_network_acl_rule.redshift_outbound",
+            "module.vpc.module.vpc.aws_redshift_subnet_group.redshift",
+            "module.vpc.module.vpc.aws_route.database_dns64_nat_gateway",
+            "module.vpc.module.vpc.aws_route.database_internet_gateway",
+            "module.vpc.module.vpc.aws_route.database_ipv6_egress",
+            "module.vpc.module.vpc.aws_route.database_nat_gateway",
+            "module.vpc.module.vpc.aws_route.private_dns64_nat_gateway",
+            "module.vpc.module.vpc.aws_route.private_ipv6_egress",
+            "module.vpc.module.vpc.aws_route.private_nat_gateway",
+            "module.vpc.module.vpc.aws_route.public_internet_gateway",
+            "module.vpc.module.vpc.aws_route.public_internet_gateway_ipv6",
+            "module.vpc.module.vpc.aws_route_table.database",
+            "module.vpc.module.vpc.aws_route_table.elasticache",
+            "module.vpc.module.vpc.aws_route_table.intra",
+            "module.vpc.module.vpc.aws_route_table.private",
+            "module.vpc.module.vpc.aws_route_table.public",
+            "module.vpc.module.vpc.aws_route_table.redshift",
+            "module.vpc.module.vpc.aws_route_table_association.database",
+            "module.vpc.module.vpc.aws_route_table_association.elasticache",
+            "module.vpc.module.vpc.aws_route_table_association.intra",
+            "module.vpc.module.vpc.aws_route_table_association.outpost",
+            "module.vpc.module.vpc.aws_route_table_association.private",
+            "module.vpc.module.vpc.aws_route_table_association.public",
+            "module.vpc.module.vpc.aws_route_table_association.redshift",
+            "module.vpc.module.vpc.aws_route_table_association.redshift_public",
+            "module.vpc.module.vpc.aws_subnet.database",
+            "module.vpc.module.vpc.aws_subnet.elasticache",
+            "module.vpc.module.vpc.aws_subnet.intra",
+            "module.vpc.module.vpc.aws_subnet.outpost",
+            "module.vpc.module.vpc.aws_subnet.private",
+            "module.vpc.module.vpc.aws_subnet.public",
+            "module.vpc.module.vpc.aws_subnet.redshift",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_block_public_access_exclusion.this",
+            "module.vpc.module.vpc.aws_vpc_block_public_access_options.this",
+            "module.vpc.module.vpc.aws_vpc_dhcp_options.this",
+            "module.vpc.module.vpc.aws_vpc_dhcp_options_association.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this",
+            "module.vpc.module.vpc.aws_vpn_gateway.this",
+            "module.vpc.module.vpc.aws_vpn_gateway_attachment.this",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.intra",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.private",
+            "module.vpc.module.vpc.aws_vpn_gateway_route_propagation.public",
+            "module.vpc.module.vpc.data.aws_caller_identity.current",
+            "module.vpc.module.vpc.data.aws_iam_policy_document.flow_log_cloudwatch_assume_role",
+            "module.vpc.module.vpc.data.aws_iam_policy_document.vpc_flow_log_cloudwatch",
+            "module.vpc.module.vpc.data.aws_partition.current",
+            "module.vpc.module.vpc.data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.ecs_iam",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "ecs_execution_role",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::851725374695:role/ecs-exec-role-20250710200612954700000004",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ecs-tasks.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-07-10T20:06:13Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "ecs-exec-role-20250710200612954700000004",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+            ],
+            "max_session_duration": 3600,
+            "name": "ecs-exec-role-20250710200612954700000004",
+            "name_prefix": "ecs-exec-role-",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            },
+            "tags_all": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            },
+            "unique_id": "AROA4MTWJ2TTZVEQVFRUE"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.ecs_iam",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "ecs_task_role",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::851725374695:role/ecs-task-role-20250710200612954700000003",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ecs-tasks.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-07-10T20:06:13Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "ecs-task-role-20250710200612954700000003",
+            "inline_policy": [],
+            "managed_policy_arns": [],
+            "max_session_duration": 3600,
+            "name": "ecs-task-role-20250710200612954700000003",
+            "name_prefix": "ecs-task-role-",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            },
+            "tags_all": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            },
+            "unique_id": "AROA4MTWJ2TTSUM3YJUFE"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "module": "module.ecs_iam",
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "ecs_execution",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "ecs-exec-role-20250710200612954700000004/arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+            "policy_arn": "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+            "role": "ecs-exec-role-20250710200612954700000004"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.ecs_iam.aws_iam_role.ecs_execution_role"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.vpc",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "vpc_flow_logs",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::851725374695:role/dev-streamamg-vpc-vpc-flow-logs-role",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"vpc-flow-logs.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-07-10T20:06:13Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "dev-streamamg-vpc-vpc-flow-logs-role",
+            "inline_policy": [
+              {
+                "name": "vpc-flow-logs-policy",
+                "policy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":[\"logs:CreateLogGroup\",\"logs:CreateLogStream\",\"logs:PutLogEvents\",\"logs:DescribeLogGroups\",\"logs:DescribeLogStreams\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}]}"
+              }
+            ],
+            "managed_policy_arns": [],
+            "max_session_duration": 3600,
+            "name": "dev-streamamg-vpc-vpc-flow-logs-role",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            },
+            "tags_all": {
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Project": "StreamAMG"
+            },
+            "unique_id": "AROA4MTWJ2TTWGBID6ODE"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc",
+      "mode": "managed",
+      "type": "aws_iam_role_policy",
+      "name": "vpc_flow_logs",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "dev-streamamg-vpc-vpc-flow-logs-role:vpc-flow-logs-policy",
+            "name": "vpc-flow-logs-policy",
+            "name_prefix": "",
+            "policy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":[\"logs:CreateLogGroup\",\"logs:CreateLogStream\",\"logs:PutLogEvents\",\"logs:DescribeLogGroups\",\"logs:DescribeLogStreams\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}]}",
+            "role": "dev-streamamg-vpc-vpc-flow-logs-role"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.vpc.aws_iam_role.vpc_flow_logs"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "data",
+      "type": "aws_caller_identity",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "851725374695",
+            "arn": "arn:aws:iam::851725374695:user/MIKES",
+            "id": "851725374695",
+            "user_id": "AIDA4MTWJ2TTZ4TL7TR3G"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "flow_log_cloudwatch_assume_role",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": []
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "data",
+      "type": "aws_partition",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "dns_suffix": "amazonaws.com",
+            "id": "aws",
+            "partition": "aws",
+            "reverse_dns_prefix": "com.amazonaws"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "data",
+      "type": "aws_region",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "description": "Europe (Ireland)",
+            "endpoint": "ec2.eu-west-1.amazonaws.com",
+            "id": "eu-west-1",
+            "name": "eu-west-1",
+            "region": "eu-west-1"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_cloudwatch_log_group",
+      "name": "flow_log",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": []
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_default_network_acl",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:network-acl/acl-05cb0cb511354a07c",
+            "default_network_acl_id": "acl-05cb0cb511354a07c",
+            "egress": [
+              {
+                "action": "allow",
+                "cidr_block": "",
+                "from_port": 0,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "::/0",
+                "protocol": "-1",
+                "rule_no": 101,
+                "to_port": 0
+              },
+              {
+                "action": "allow",
+                "cidr_block": "0.0.0.0/0",
+                "from_port": 0,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "-1",
+                "rule_no": 100,
+                "to_port": 0
+              }
+            ],
+            "id": "acl-05cb0cb511354a07c",
+            "ingress": [
+              {
+                "action": "allow",
+                "cidr_block": "",
+                "from_port": 0,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "::/0",
+                "protocol": "-1",
+                "rule_no": 101,
+                "to_port": 0
+              },
+              {
+                "action": "allow",
+                "cidr_block": "0.0.0.0/0",
+                "from_port": 0,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "-1",
+                "rule_no": 100,
+                "to_port": 0
+              }
+            ],
+            "owner_id": "851725374695",
+            "region": "eu-west-1",
+            "subnet_ids": [
+              "subnet-020ed326ce1b4e57a",
+              "subnet-0526db031361fbbfa",
+              "subnet-05c0709a269907d6c",
+              "subnet-0c1650300e61eccbc"
+            ],
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-default",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-default",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "vpc_id": "vpc-0735e4a732cddc771"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_vpc.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_default_route_table",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:route-table/rtb-054f6ab29217c871d",
+            "default_route_table_id": "rtb-054f6ab29217c871d",
+            "id": "rtb-054f6ab29217c871d",
+            "owner_id": "851725374695",
+            "propagating_vgws": [],
+            "region": "eu-west-1",
+            "route": [],
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-default",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-default",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "timeouts": {
+              "create": "5m",
+              "update": "5m"
+            },
+            "vpc_id": "vpc-0735e4a732cddc771"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsInVwZGF0ZSI6MzAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_vpc.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_default_security_group",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:security-group/sg-0b1af787753167c60",
+            "description": "default VPC security group",
+            "egress": [],
+            "id": "sg-0b1af787753167c60",
+            "ingress": [],
+            "name": "default",
+            "name_prefix": "",
+            "owner_id": "851725374695",
+            "region": "eu-west-1",
+            "revoke_rules_on_delete": false,
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-default",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-default",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "vpc_id": "vpc-0735e4a732cddc771"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_vpc.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_eip",
+      "name": "nat",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "address": null,
+            "allocation_id": "eipalloc-075d93d719f9a297f",
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:elastic-ip/eipalloc-075d93d719f9a297f",
+            "associate_with_private_ip": null,
+            "association_id": "eipassoc-00a552cb127040994",
+            "carrier_ip": "",
+            "customer_owned_ip": "",
+            "customer_owned_ipv4_pool": "",
+            "domain": "vpc",
+            "id": "eipalloc-075d93d719f9a297f",
+            "instance": "",
+            "ipam_pool_id": null,
+            "network_border_group": "eu-west-1",
+            "network_interface": "eni-01bf7279aa0cde917",
+            "private_dns": "ip-10-0-1-26.eu-west-1.compute.internal",
+            "private_ip": "10.0.1.26",
+            "ptr_record": "",
+            "public_dns": "ec2-34-243-141-216.eu-west-1.compute.amazonaws.com",
+            "public_ip": "34.243.141.216",
+            "public_ipv4_pool": "amazon",
+            "region": "eu-west-1",
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-eu-west-1a",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-eu-west-1a",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxODAwMDAwMDAwMDAsInJlYWQiOjkwMDAwMDAwMDAwMCwidXBkYXRlIjozMDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_internet_gateway.this",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        },
+        {
+          "index_key": 1,
+          "schema_version": 0,
+          "attributes": {
+            "address": null,
+            "allocation_id": "eipalloc-03196b48cb502a857",
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:elastic-ip/eipalloc-03196b48cb502a857",
+            "associate_with_private_ip": null,
+            "association_id": "eipassoc-051f6a4d070c953cc",
+            "carrier_ip": "",
+            "customer_owned_ip": "",
+            "customer_owned_ipv4_pool": "",
+            "domain": "vpc",
+            "id": "eipalloc-03196b48cb502a857",
+            "instance": "",
+            "ipam_pool_id": null,
+            "network_border_group": "eu-west-1",
+            "network_interface": "eni-0b59299ff1389e54a",
+            "private_dns": "ip-10-0-2-163.eu-west-1.compute.internal",
+            "private_ip": "10.0.2.163",
+            "ptr_record": "",
+            "public_dns": "ec2-54-72-3-175.eu-west-1.compute.amazonaws.com",
+            "public_ip": "54.72.3.175",
+            "public_ipv4_pool": "amazon",
+            "region": "eu-west-1",
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-eu-west-1b",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-eu-west-1b",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxODAwMDAwMDAwMDAsInJlYWQiOjkwMDAwMDAwMDAwMCwidXBkYXRlIjozMDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_internet_gateway.this",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "vpc_flow_log_cloudwatch",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": []
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_internet_gateway",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:internet-gateway/igw-07d4eafe312b75273",
+            "id": "igw-07d4eafe312b75273",
+            "owner_id": "851725374695",
+            "region": "eu-west-1",
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0735e4a732cddc771"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_nat_gateway",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "allocation_id": "eipalloc-075d93d719f9a297f",
+            "association_id": "eipassoc-00a552cb127040994",
+            "connectivity_type": "public",
+            "id": "nat-0a1ba3b571244ec69",
+            "network_interface_id": "eni-01bf7279aa0cde917",
+            "private_ip": "10.0.1.26",
+            "public_ip": "34.243.141.216",
+            "region": "eu-west-1",
+            "secondary_allocation_ids": [],
+            "secondary_private_ip_address_count": 0,
+            "secondary_private_ip_addresses": [],
+            "subnet_id": "subnet-0526db031361fbbfa",
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-nat",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-nat",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTgwMDAwMDAwMDAwMCwidXBkYXRlIjo2MDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_eip.nat",
+            "module.vpc.module.vpc.aws_internet_gateway.this",
+            "module.vpc.module.vpc.aws_subnet.public",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        },
+        {
+          "index_key": 1,
+          "schema_version": 0,
+          "attributes": {
+            "allocation_id": "eipalloc-03196b48cb502a857",
+            "association_id": "eipassoc-051f6a4d070c953cc",
+            "connectivity_type": "public",
+            "id": "nat-07104fdaaf4041aad",
+            "network_interface_id": "eni-0b59299ff1389e54a",
+            "private_ip": "10.0.2.163",
+            "public_ip": "54.72.3.175",
+            "region": "eu-west-1",
+            "secondary_allocation_ids": [],
+            "secondary_private_ip_address_count": 0,
+            "secondary_private_ip_addresses": [],
+            "subnet_id": "subnet-020ed326ce1b4e57a",
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-nat",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-nat",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTgwMDAwMDAwMDAwMCwidXBkYXRlIjo2MDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_eip.nat",
+            "module.vpc.module.vpc.aws_internet_gateway.this",
+            "module.vpc.module.vpc.aws_subnet.public",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_route",
+      "name": "private_nat_gateway",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "carrier_gateway_id": "",
+            "core_network_arn": "",
+            "destination_cidr_block": "0.0.0.0/0",
+            "destination_ipv6_cidr_block": "",
+            "destination_prefix_list_id": "",
+            "egress_only_gateway_id": "",
+            "gateway_id": "",
+            "id": "r-rtb-0d980e40aa2cafc031080289494",
+            "instance_id": "",
+            "instance_owner_id": "",
+            "local_gateway_id": "",
+            "nat_gateway_id": "nat-0a1ba3b571244ec69",
+            "network_interface_id": "",
+            "origin": "CreateRoute",
+            "region": "eu-west-1",
+            "route_table_id": "rtb-0d980e40aa2cafc03",
+            "state": "active",
+            "timeouts": {
+              "create": "5m",
+              "delete": null,
+              "update": null
+            },
+            "transit_gateway_id": "",
+            "vpc_endpoint_id": "",
+            "vpc_peering_connection_id": ""
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_eip.nat",
+            "module.vpc.module.vpc.aws_internet_gateway.this",
+            "module.vpc.module.vpc.aws_nat_gateway.this",
+            "module.vpc.module.vpc.aws_route_table.private",
+            "module.vpc.module.vpc.aws_subnet.public",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        },
+        {
+          "index_key": 1,
+          "schema_version": 0,
+          "attributes": {
+            "carrier_gateway_id": "",
+            "core_network_arn": "",
+            "destination_cidr_block": "0.0.0.0/0",
+            "destination_ipv6_cidr_block": "",
+            "destination_prefix_list_id": "",
+            "egress_only_gateway_id": "",
+            "gateway_id": "",
+            "id": "r-rtb-01fe078611a6488901080289494",
+            "instance_id": "",
+            "instance_owner_id": "",
+            "local_gateway_id": "",
+            "nat_gateway_id": "nat-07104fdaaf4041aad",
+            "network_interface_id": "",
+            "origin": "CreateRoute",
+            "region": "eu-west-1",
+            "route_table_id": "rtb-01fe078611a648890",
+            "state": "active",
+            "timeouts": {
+              "create": "5m",
+              "delete": null,
+              "update": null
+            },
+            "transit_gateway_id": "",
+            "vpc_endpoint_id": "",
+            "vpc_peering_connection_id": ""
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_eip.nat",
+            "module.vpc.module.vpc.aws_internet_gateway.this",
+            "module.vpc.module.vpc.aws_nat_gateway.this",
+            "module.vpc.module.vpc.aws_route_table.private",
+            "module.vpc.module.vpc.aws_subnet.public",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_route",
+      "name": "public_internet_gateway",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "carrier_gateway_id": "",
+            "core_network_arn": "",
+            "destination_cidr_block": "0.0.0.0/0",
+            "destination_ipv6_cidr_block": "",
+            "destination_prefix_list_id": "",
+            "egress_only_gateway_id": "",
+            "gateway_id": "igw-07d4eafe312b75273",
+            "id": "r-rtb-019487b407ff819051080289494",
+            "instance_id": "",
+            "instance_owner_id": "",
+            "local_gateway_id": "",
+            "nat_gateway_id": "",
+            "network_interface_id": "",
+            "origin": "CreateRoute",
+            "region": "eu-west-1",
+            "route_table_id": "rtb-019487b407ff81905",
+            "state": "active",
+            "timeouts": {
+              "create": "5m",
+              "delete": null,
+              "update": null
+            },
+            "transit_gateway_id": "",
+            "vpc_endpoint_id": "",
+            "vpc_peering_connection_id": ""
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_internet_gateway.this",
+            "module.vpc.module.vpc.aws_route_table.public",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_route_table",
+      "name": "private",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:route-table/rtb-0d980e40aa2cafc03",
+            "id": "rtb-0d980e40aa2cafc03",
+            "owner_id": "851725374695",
+            "propagating_vgws": [],
+            "region": "eu-west-1",
+            "route": [
+              {
+                "carrier_gateway_id": "",
+                "cidr_block": "0.0.0.0/0",
+                "core_network_arn": "",
+                "destination_prefix_list_id": "",
+                "egress_only_gateway_id": "",
+                "gateway_id": "",
+                "ipv6_cidr_block": "",
+                "local_gateway_id": "",
+                "nat_gateway_id": "nat-0a1ba3b571244ec69",
+                "network_interface_id": "",
+                "transit_gateway_id": "",
+                "vpc_endpoint_id": "",
+                "vpc_peering_connection_id": ""
+              }
+            ],
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-private-eu-west-1a",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-private-eu-west-1a",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0735e4a732cddc771"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        },
+        {
+          "index_key": 1,
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:route-table/rtb-01fe078611a648890",
+            "id": "rtb-01fe078611a648890",
+            "owner_id": "851725374695",
+            "propagating_vgws": [],
+            "region": "eu-west-1",
+            "route": [
+              {
+                "carrier_gateway_id": "",
+                "cidr_block": "0.0.0.0/0",
+                "core_network_arn": "",
+                "destination_prefix_list_id": "",
+                "egress_only_gateway_id": "",
+                "gateway_id": "",
+                "ipv6_cidr_block": "",
+                "local_gateway_id": "",
+                "nat_gateway_id": "nat-07104fdaaf4041aad",
+                "network_interface_id": "",
+                "transit_gateway_id": "",
+                "vpc_endpoint_id": "",
+                "vpc_peering_connection_id": ""
+              }
+            ],
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-private-eu-west-1b",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-private-eu-west-1b",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0735e4a732cddc771"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_route_table",
+      "name": "public",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:route-table/rtb-019487b407ff81905",
+            "id": "rtb-019487b407ff81905",
+            "owner_id": "851725374695",
+            "propagating_vgws": [],
+            "region": "eu-west-1",
+            "route": [
+              {
+                "carrier_gateway_id": "",
+                "cidr_block": "0.0.0.0/0",
+                "core_network_arn": "",
+                "destination_prefix_list_id": "",
+                "egress_only_gateway_id": "",
+                "gateway_id": "igw-07d4eafe312b75273",
+                "ipv6_cidr_block": "",
+                "local_gateway_id": "",
+                "nat_gateway_id": "",
+                "network_interface_id": "",
+                "transit_gateway_id": "",
+                "vpc_endpoint_id": "",
+                "vpc_peering_connection_id": ""
+              }
+            ],
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-public",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-public",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0735e4a732cddc771"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_route_table_association",
+      "name": "private",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "gateway_id": "",
+            "id": "rtbassoc-0ec099cc63552e67e",
+            "region": "eu-west-1",
+            "route_table_id": "rtb-0d980e40aa2cafc03",
+            "subnet_id": "subnet-0c1650300e61eccbc",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_route_table.private",
+            "module.vpc.module.vpc.aws_subnet.private",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        },
+        {
+          "index_key": 1,
+          "schema_version": 0,
+          "attributes": {
+            "gateway_id": "",
+            "id": "rtbassoc-01baaeea816f5db3e",
+            "region": "eu-west-1",
+            "route_table_id": "rtb-01fe078611a648890",
+            "subnet_id": "subnet-05c0709a269907d6c",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_route_table.private",
+            "module.vpc.module.vpc.aws_subnet.private",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_route_table_association",
+      "name": "public",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "gateway_id": "",
+            "id": "rtbassoc-041fcb2c6393a4c33",
+            "region": "eu-west-1",
+            "route_table_id": "rtb-019487b407ff81905",
+            "subnet_id": "subnet-0526db031361fbbfa",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_route_table.public",
+            "module.vpc.module.vpc.aws_subnet.public",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        },
+        {
+          "index_key": 1,
+          "schema_version": 0,
+          "attributes": {
+            "gateway_id": "",
+            "id": "rtbassoc-088be9c43c824469b",
+            "region": "eu-west-1",
+            "route_table_id": "rtb-019487b407ff81905",
+            "subnet_id": "subnet-020ed326ce1b4e57a",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_route_table.public",
+            "module.vpc.module.vpc.aws_subnet.public",
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_subnet",
+      "name": "private",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:subnet/subnet-0c1650300e61eccbc",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "eu-west-1a",
+            "availability_zone_id": "euw1-az2",
+            "cidr_block": "10.0.3.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-0c1650300e61eccbc",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": false,
+            "outpost_arn": "",
+            "owner_id": "851725374695",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "region": "eu-west-1",
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-private-eu-west-1a",
+              "Project": "StreamAMG",
+              "Terraform": "true",
+              "kubernetes.io/role/internal-elb": "1"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-private-eu-west-1a",
+              "Project": "StreamAMG",
+              "Terraform": "true",
+              "kubernetes.io/role/internal-elb": "1"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0735e4a732cddc771"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        },
+        {
+          "index_key": 1,
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:subnet/subnet-05c0709a269907d6c",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "eu-west-1b",
+            "availability_zone_id": "euw1-az3",
+            "cidr_block": "10.0.4.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-05c0709a269907d6c",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": false,
+            "outpost_arn": "",
+            "owner_id": "851725374695",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "region": "eu-west-1",
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-private-eu-west-1b",
+              "Project": "StreamAMG",
+              "Terraform": "true",
+              "kubernetes.io/role/internal-elb": "1"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-private-eu-west-1b",
+              "Project": "StreamAMG",
+              "Terraform": "true",
+              "kubernetes.io/role/internal-elb": "1"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0735e4a732cddc771"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_subnet",
+      "name": "public",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:subnet/subnet-0526db031361fbbfa",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "eu-west-1a",
+            "availability_zone_id": "euw1-az2",
+            "cidr_block": "10.0.1.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-0526db031361fbbfa",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": false,
+            "outpost_arn": "",
+            "owner_id": "851725374695",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "region": "eu-west-1",
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-public-eu-west-1a",
+              "Project": "StreamAMG",
+              "Terraform": "true",
+              "kubernetes.io/role/elb": "1"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-public-eu-west-1a",
+              "Project": "StreamAMG",
+              "Terraform": "true",
+              "kubernetes.io/role/elb": "1"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0735e4a732cddc771"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        },
+        {
+          "index_key": 1,
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:subnet/subnet-020ed326ce1b4e57a",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "eu-west-1b",
+            "availability_zone_id": "euw1-az3",
+            "cidr_block": "10.0.2.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-020ed326ce1b4e57a",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": false,
+            "outpost_arn": "",
+            "owner_id": "851725374695",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "region": "eu-west-1",
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-public-eu-west-1b",
+              "Project": "StreamAMG",
+              "Terraform": "true",
+              "kubernetes.io/role/elb": "1"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc-public-eu-west-1b",
+              "Project": "StreamAMG",
+              "Terraform": "true",
+              "kubernetes.io/role/elb": "1"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0735e4a732cddc771"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "module.vpc.module.vpc.aws_vpc.this",
+            "module.vpc.module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_vpc",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-west-1:851725374695:vpc/vpc-0735e4a732cddc771",
+            "assign_generated_ipv6_cidr_block": false,
+            "cidr_block": "10.0.0.0/16",
+            "default_network_acl_id": "acl-05cb0cb511354a07c",
+            "default_route_table_id": "rtb-054f6ab29217c871d",
+            "default_security_group_id": "sg-0b1af787753167c60",
+            "dhcp_options_id": "dopt-0f8ddfc2b46fae1b4",
+            "enable_dns_hostnames": true,
+            "enable_dns_support": true,
+            "enable_network_address_usage_metrics": false,
+            "id": "vpc-0735e4a732cddc771",
+            "instance_tenancy": "default",
+            "ipv4_ipam_pool_id": null,
+            "ipv4_netmask_length": null,
+            "ipv6_association_id": "",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_network_border_group": "",
+            "ipv6_ipam_pool_id": "",
+            "ipv6_netmask_length": 0,
+            "main_route_table_id": "rtb-054f6ab29217c871d",
+            "owner_id": "851725374695",
+            "region": "eu-west-1",
+            "tags": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            },
+            "tags_all": {
+              "Component": "network",
+              "Environment": "staging",
+              "ManagedBy": "Terraform",
+              "Name": "dev-streamamg-vpc",
+              "Project": "StreamAMG",
+              "Terraform": "true"
+            }
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.vpc.module.vpc",
+      "mode": "managed",
+      "type": "aws_vpc_ipv4_cidr_block_association",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": []
+    }
+  ],
+  "check_results": [
+    {
+      "object_kind": "var",
+      "config_addr": "var.environment",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "var.environment",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "var.availability_zones",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "var.availability_zones",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "var.private_subnet_cidrs",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "var.private_subnet_cidrs",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "var.aws_region",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "var.aws_region",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "var.vpc_cidr",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "var.vpc_cidr",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "var.public_subnet_cidrs",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "var.public_subnet_cidrs",
+          "status": "pass"
+        }
+      ]
+    }
+  ]
+}
