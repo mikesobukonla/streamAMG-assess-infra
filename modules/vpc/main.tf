@@ -101,11 +101,15 @@ resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
 
 resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
   name              = "/aws/vpc/flow-logs/${var.environment}-${var.vpc_name}"
-  retention_in_days = 90
+  retention_in_days = 0 # Set to 0 for no retention (infinite retention)
+  # retention_in_days = 90 # Uncomment for 90 days retention
   tags = merge(var.tags, { Name = "vpc-flow-logs" })
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
+    # This allows the log group to be recreated if needed, but prevents accidental deletion.
+    # If you want to keep the log group even if the VPC is deleted, set this to true.
+    # prevent_destroy = true
     ignore_changes  = [name]
   }
 }
